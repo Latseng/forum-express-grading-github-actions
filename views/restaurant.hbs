@@ -1,4 +1,4 @@
-<div class="row mb-5">
+<div class="row mb-4">
   <div class="col-md-12">
     <h1>{{restaurant.name}}</h1>
     <p>[{{restaurant.Category.name}}]</p>
@@ -16,6 +16,9 @@
   <div class="col-md-8">
     <p style="white-space: break-spaces;">{{restaurant.description}}</p>
   </div>
+   <a class="btn btn-primary my-4" href="/restaurants/{{restaurant.id}}/dashboard">Dashboard</a>
   <hr>
+ 
 </div>
+
 <a class="btn btn-outline-secondary" href="javascript:history.back()">Back</a>

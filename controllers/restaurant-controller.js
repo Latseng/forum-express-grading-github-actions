@@ -24,7 +24,21 @@ const restaurantController = {
     })
       .then(restaurant => {
         if (!restaurant) throw new Error("Restaurant didn't exist!") //  如果找不到，回傳錯誤訊息，後面不執行
-        res.render('admin/restaurant', { restaurant: restaurant.toJSON() })
+        return restaurant.increment('viewCounts')
+      }).then(restaurant => {
+        res.render('restaurant', { restaurant: restaurant.toJSON() })
+      })
+      .catch(err => next(err))
+  },
+  getDashboard: (req, res, next) => {
+    return Restaurant.findByPk(req.params.id, {
+      include: Category,
+      raw: true,
+      nest: true
+    })
+      .then(restaurant => {
+        if (!restaurant) throw new Error("Dashboard didn't exist!")
+        res.render('dashboard', { restaurant })
       })
       .catch(err => next(err))
   }

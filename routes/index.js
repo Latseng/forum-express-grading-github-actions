@@ -26,6 +26,11 @@ router.get('/logout', userController.logout)
 router.get('/restaurants/:id/dashboard', authenticated, restController.getDashboard)
 router.get('/restaurants/:id', authenticated, restController.getRestaurant)
 router.get('/restaurants', authenticated, restController.getRestaurants)
+router.delete(
+  '/comments/:id',
+  authenticatedAdmin,
+  commentController.deleteComment
+)
 router.post('/comments', authenticated, commentController.postComment)
 router.use('/', (req, res) => res.redirect('/restaurants'))// fallback 路由，當沒有匹配到路由時，會導向 /restaurants
 router.use('/', generalErrorHandler)

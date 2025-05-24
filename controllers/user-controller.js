@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs') // 載入 bcrypt
 const db = require('../models')
-const { User } = db
+const { User, Comment, Restaurant } = db
 const { localFileHandler } = require('../helpers/file-helpers')
 
 const userController = {
@@ -50,6 +50,7 @@ const userController = {
     return User.findByPk(req.params.id, {
       // raw: true,
       // nest: true
+      include: { model: Comment, include: Restaurant }
     })
       .then(user => {
         if (!user) throw new Error("User didn't exist!") //  如果找不到，回傳錯誤訊息，後面不執行

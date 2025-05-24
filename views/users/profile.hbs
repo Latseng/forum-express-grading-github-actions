@@ -12,3 +12,26 @@
     </div>
   </div>
 </div>
+
+<div class="card">
+  <div class="card-header">
+    <b>{{user.Comments.length}} </b>已評論餐廳
+  </div>
+  <div class="card-body">
+    {{#if user.Comments.length}}
+         {{#each user.Comments}}
+        <a href="/restaurants/{{this.Restaurant.id}}">
+          <img class="img-fluid" src="{{this.Restaurant.image}}" alt="Card image cap"
+            style="transition: opacity 0.5s; opacity:0;" onload="this.style.opacity=1;">
+        </a>
+        <p class="card-text">
+          <a href="/restaurants/{{this.Restaurant.id}}">
+            {{this.Restaurant.name}}
+          </a>
+        </p>
+        {{/each}}
+    {{else}}
+    <p class="card-text">您尚未留下評論</p>
+      {{/if}}
+  </div>
+</div>
